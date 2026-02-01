@@ -1,60 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Valentine 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     body{
-      background:#ffd6e8;
-      font-family: Arial, sans-serif;
+      margin:0;
+      height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
-      height:100vh;
-      margin:0;
+      background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+      font-family: Arial, sans-serif;
+      overflow:hidden;
     }
+
     .box{
       background:#fff;
-      padding:25px;
-      border-radius:20px;
+      padding:30px;
+      border-radius:25px;
       text-align:center;
       width:90%;
-      max-width:350px;
+      max-width:360px;
+      box-shadow:0 12px 30px rgba(0,0,0,0.25);
     }
+
+    h2{
+      color:#ff4d6d;
+      margin-bottom:25px;
+    }
+
     button{
-      padding:12px 22px;
+      padding:14px 26px;
       font-size:18px;
       border:none;
-      border-radius:25px;
+      border-radius:30px;
       cursor:pointer;
       margin:10px;
     }
+
     #yes{
       background:#ff4d6d;
       color:white;
     }
+
     #no{
       background:#ddd;
       position:absolute;
     }
+
+    #message{
+      display:none;
+      font-size:22px;
+      color:#ff4d6d;
+      margin-top:20px;
+      font-weight:bold;
+    }
   </style>
 </head>
+
 <body>
 
 <div class="box">
-  <h2>Kya shivani singh Pagal hai ? 💘</h2>
-  <button id="yes" onclick="alert('Yayyy 💖')">Yes</button>
-  <button id="no">No</button>
+  <h2>Kya ahivani Singh Pagal hai ? 💘</h2>
+
+  <button id="yes">Yes 💖</button>
+  <button id="no">No 🙈</button>
+
+  <div id="message">
+    Yayyyy 🎉💖 <br>
+    You made my day!
+  </div>
 </div>
 
+<!-- Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 <script>
+  // NO button bhaagta rahe 😈
   const noBtn = document.getElementById("no");
-  noBtn.addEventListener("touchstart", move);
-  noBtn.addEventListener("mouseover", move);
-  function move(){
+  function moveNo(){
     noBtn.style.left = Math.random()*70 + "vw";
-    noBtn.style.top = Math.random()*70 + "vh";
+    noBtn.style.top  = Math.random()*70 + "vh";
   }
+  noBtn.addEventListener("mouseover", moveNo);
+  noBtn.addEventListener("touchstart", moveNo);
+
+  // YES celebration 🎉
+  document.getElementById("yes").addEventListener("click", () => {
+    document.getElementById("message").style.display = "block";
+
+    confetti({
+      particleCount: 180,
+      spread: 90,
+      origin: { y: 0.6 }
+    });
+
+    setTimeout(() => {
+      confetti({
+        particleCount: 150,
+        spread: 120,
+        origin: { y: 0.4 }
+      });
+    }, 500);
+  });
 </script>
 
 </body>
